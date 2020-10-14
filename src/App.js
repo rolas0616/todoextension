@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Complete from './pages/Complete';
+import Container from './components/Container';
+import Header from './components/Header';
+import Todo from './pages/Todo';
 
-function App() {
+const App = () => {
+  const [screen, setScreen] = useState('todo');
   return (
-    <div className="App">
-      <p>Hola mundo</p>
-    </div>
+    <Container>
+      <Header
+        setScreen={setScreen}
+      />
+      {
+        screen === 'todo' ? <Todo/> : <Complete/>
+      }
+    </Container>
   );
 }
 
