@@ -4,6 +4,9 @@ const Note = ({
   note,
   setNotes,
   notes,
+  setIsVisibleForm,
+  setIsEdit,
+  setCurrentNote,
 }) => {
 
   const deleteNote = (noteId) => {
@@ -16,7 +19,7 @@ const Note = ({
       <p><input type="checkbox"/>{note.content}</p>
       <button
         type="button"
-
+        onClick={() => [setIsVisibleForm(true), setIsEdit(true), setCurrentNote(note.id)]}
       >
         editar
       </button>

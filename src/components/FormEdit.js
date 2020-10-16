@@ -1,33 +1,36 @@
-import React, { useState } from 'react'
-import shortid from 'shortid';
+import React, { useState, useEffect } from 'react'
 
-const Form = ({
+const FormEdit = ({
+  currentNote,
   notes,
-  setIsVisibleForm,
   setNotes,
+  setIsVisibleForm,
 }) => {
   const [title, setTitle] = useState('');
   const [error, setError] = useState('');
-  const addNote = (e) => {
+  useEffect(() => {
+    const note = notes.filter(note => note.id === currentNote);
+    setTitle(note[0]['content'])
+  }, [notes, currentNote]);
+  const editNone = (e) => {
     e.preventDefault();
     if(!title.trim()) {
       setError('Campo obligatorio')
       return;
     }
-    setNotes([
-      {id: shortid.generate() , content: title, complete: true},
-      ...notes
-    ]);
-    setTitle('');
+    setNotes(
+      notes.map(note => note.id === currentNote ? {id: note.id, content:title, complete: note.complete} : note)
+    )
     setIsVisibleForm(false);
   }
   return (
     <>
-    <form onSubmit={addNote} >
+    <form onSubmit={editNone} >
       <input
         type="text"
-        placeholder="Agrega una tarea"
+        placeholder="Editar nota"
         onChange={(e) => setTitle(e.target.value)}
+        value={title}
       />
       <button
         type="submit"
@@ -43,4 +46,4 @@ const Form = ({
   )
 }
 
-export default Form;
+export default FormEdit;

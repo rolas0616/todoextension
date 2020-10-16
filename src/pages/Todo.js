@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Form from '../components/Form';
+import FormEdit from '../components/FormEdit';
 import Note from '../components/Note';
 
 const Todo = () => {
@@ -21,20 +22,10 @@ const Todo = () => {
       complete : false,
     },
   ]);
+  const [isEdit, setIsEdit] = useState(false);
+  const [currentNote, setCurrentNote] = useState('');
   return (
     <div>
-      {
-        isVisibleForm ? (
-          <>
-            <h2>Agregar tarea</h2>
-            <Form
-              notes = { notes }
-              setNotes = { setNotes }
-              setIsVisibleForm = { setIsVisibleForm }
-            />
-          </>
-        ) : null
-      }
       {
         !isVisibleForm ? <h2>Tus tareas</h2> : null
       }
@@ -47,7 +38,10 @@ const Todo = () => {
               key = { note.id }
               note = { note }
               setNotes = { setNotes }
+              setIsEdit = { setIsEdit }
               notes = { notes }
+              setIsVisibleForm = { setIsVisibleForm }
+              setCurrentNote={setCurrentNote}
             />
           ))
         ) : null
@@ -57,10 +51,37 @@ const Todo = () => {
         !isVisibleForm ? (
           <button
             type="button"
-            onClick={ () => setIsVisibleForm(true) }
+            onClick={ () => [setIsVisibleForm(true), setIsEdit(false)] }
           >
             + Agregar nota
           </button>
+        ) : null
+      }
+      {
+        isVisibleForm ? (
+          <>
+            <h2>
+              {
+                isEdit ? 'Editar nota' : 'Agregar nota'
+              }
+            </h2>
+              {
+                isEdit ? (
+                  <FormEdit
+                    currentNote={currentNote}
+                    notes={notes}
+                    setNotes={setNotes}
+                    setIsVisibleForm={setIsVisibleForm}
+                  />
+                ) : (
+                  <Form
+                    notes = { notes }
+                    setIsVisibleForm = { setIsVisibleForm }
+                    setNotes = { setNotes }
+                  />
+                )
+              }
+          </>
         ) : null
       }
     </div>
