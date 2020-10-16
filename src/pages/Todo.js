@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import Form from '../components/Form';
+import Note from '../components/Note';
 
 const Todo = () => {
+  const [isVisibleForm, setIsVisibleForm] = useState(false);
   const [notes, setNotes] = useState([
     {
       id : '1',
@@ -17,27 +20,49 @@ const Todo = () => {
       content : 'note 3',
       complete : false,
     },
-  ])
+  ]);
   return (
     <div>
-      <h2>Tus tareas</h2>
       {
-        notes.length === 0 
-        ?
-        <p>Agrega una nota</p>
-        :
-        notes.map((note) => (
-          <div key={ note.id }>
-            <p> <input type="checkbox"/> {note.content} </p>
-            <button type="button"> editar </button>
-            <button type="button"> eliminar </button>
-          </div>
-        ))
+        isVisibleForm ? (
+          <>
+            <h2>Agregar tarea</h2>
+            <Form
+              notes = { notes }
+              setNotes = { setNotes }
+              setIsVisibleForm = { setIsVisibleForm }
+            />
+          </>
+        ) : null
+      }
+      {
+        !isVisibleForm ? <h2>Tus tareas</h2> : null
+      }
+      {
+        !isVisibleForm ? (
+          notes.length === 0 ? <p>Agrega una nota</p>
+          :
+          notes.map((note) => (
+            <Note
+              key = { note.id }
+              note = { note }
+              setNotes = { setNotes }
+              notes = { notes }
+            />
+          ))
+        ) : null
       }
       <br/>
-      <button type="button">
-        + Agregar nota
-      </button>
+      {
+        !isVisibleForm ? (
+          <button
+            type="button"
+            onClick={ () => setIsVisibleForm(true) }
+          >
+            + Agregar nota
+          </button>
+        ) : null
+      }
     </div>
   )
 }
