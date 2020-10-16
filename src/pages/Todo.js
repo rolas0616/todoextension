@@ -3,25 +3,13 @@ import Form from '../components/Form';
 import FormEdit from '../components/FormEdit';
 import Note from '../components/Note';
 
-const Todo = () => {
+const Todo = ({
+  notes,
+  setNotes,
+  notesComplete,
+  setNotesComplete
+}) => {
   const [isVisibleForm, setIsVisibleForm] = useState(false);
-  const [notes, setNotes] = useState([
-    {
-      id : '1',
-      content : 'note 1',
-      complete : false,
-    },
-    {
-      id : '2',
-      content : 'note 2',
-      complete : false,
-    },
-    {
-      id : '3',
-      content : 'note 3',
-      complete : false,
-    },
-  ]);
   const [isEdit, setIsEdit] = useState(false);
   const [currentNote, setCurrentNote] = useState('');
   return (
@@ -42,6 +30,8 @@ const Todo = () => {
               notes = { notes }
               setIsVisibleForm = { setIsVisibleForm }
               setCurrentNote={setCurrentNote}
+              notesComplete={notesComplete}s
+              setNotesComplete={setNotesComplete}
             />
           ))
         ) : null

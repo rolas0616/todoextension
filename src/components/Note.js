@@ -7,6 +7,8 @@ const Note = ({
   setIsVisibleForm,
   setIsEdit,
   setCurrentNote,
+  setNotesComplete,
+  notesComplete,
 }) => {
 
   const deleteNote = (noteId) => {
@@ -14,9 +16,22 @@ const Note = ({
     setNotes(updateNotes);
   }
 
+  const addCompleteNote = (curretNote) => {
+    setNotesComplete([
+      {id:curretNote.id, content:curretNote.content, complete:true},
+      ...notesComplete
+    ])
+    const updateNotes = notes.filter(note => note.id !== curretNote.id);
+    setNotes(updateNotes);
+  }
+
   return (
     <div>
-      <p><input type="checkbox"/>{note.content}</p>
+      <input 
+        type="checkbox"
+        onClick={() => addCompleteNote(note)}
+      />
+      <label> {note.content} </label>
       <button
         type="button"
         onClick={() => [setIsVisibleForm(true), setIsEdit(true), setCurrentNote(note.id)]}
