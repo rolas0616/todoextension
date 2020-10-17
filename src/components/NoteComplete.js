@@ -2,15 +2,30 @@ import React from 'react';
 
 const NoteComplete = ({
   note,
+  notes,
   notesComplete,
-  setNotesComplete
+  setNotes,
+  setNotesComplete,
+  setScreen,
 }) => {
+  const quitCompleteNote = (currentNote) => {
+    const updateCompleteNotes = notesComplete.filter(note => note.id !== currentNote.id);
+    setNotesComplete(updateCompleteNotes);
+    note.complete = false;
+    setNotes([
+      {id:currentNote.id, content:currentNote.content, complete:false},
+      ...notes
+    ])
+    setTimeout(() => {
+      setScreen('todo');
+    }, 500);
+  }
   return (
     <div>
-      <input 
+      <input
         type="checkbox"
-        checked={true}
-        onChange={() => {}}
+        checked={note.complete}
+        onChange={() => quitCompleteNote(note) }
       />
       <label> {note.content} </label>
     </div>

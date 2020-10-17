@@ -19,7 +19,7 @@ const FormEdit = ({
       return;
     }
     setNotes(
-      notes.map(note => note.id === currentNote ? {id: note.id, content:title, complete: note.complete} : note)
+      notes.map(note => note.id === currentNote ? {id: note.id, content:title, complete: true} : note)
     )
     setIsVisibleForm(false);
   }

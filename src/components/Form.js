@@ -15,7 +15,7 @@ const Form = ({
       return;
     }
     setNotes([
-      {id: shortid.generate() , content: title, complete: true},
+      {id: shortid.generate() , content: title, complete: false},
       ...notes
     ]);
     setTitle('');

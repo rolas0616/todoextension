@@ -39,8 +39,11 @@ const App = () => {
           />
         ) :(
           <Complete
+            notes = {notes}
+            setNotes = {setNotes}
             notesComplete={notesComplete}
             setNotesComplete={setNotesComplete}
+            setScreen={setScreen}
           />
         )
       }

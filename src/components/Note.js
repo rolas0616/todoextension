@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const Note = ({
   note,
@@ -16,18 +16,22 @@ const Note = ({
     setNotes(updateNotes);
   }
 
-  const addCompleteNote = (curretNote) => {
+  const addCompleteNote = (currentNote) => {
     setNotesComplete([
-      {id:curretNote.id, content:curretNote.content, complete:true},
+      {id:currentNote.id, content:currentNote.content, complete:true},
       ...notesComplete
     ])
-    const updateNotes = notes.filter(note => note.id !== curretNote.id);
-    setNotes(updateNotes);
+    note.complete = true;
+    const updateNotes = notes.filter(note => note.id !== currentNote.id);
+    setTimeout(() => {
+      setNotes(updateNotes);
+    }, 500);
   }
 
   return (
     <div>
-      <input 
+      <input
+        checked={note.complete}
         type="checkbox"
         onClick={() => addCompleteNote(note)}
       />

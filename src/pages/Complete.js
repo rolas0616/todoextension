@@ -4,6 +4,9 @@ import NoteComplete from '../components/NoteComplete';
 const Complete = ({
   notesComplete,
   setNotesComplete,
+  setNotes,
+  notes,
+  setScreen,
 }) => {
   return (
     <div>
@@ -15,6 +18,9 @@ const Complete = ({
             note={note}
             setNotesComplete={setNotesComplete}
             notesComplete={notesComplete}
+            setNotes={setNotes}
+            notes={notes}
+            setScreen={setScreen}
           />
         ))
       }
