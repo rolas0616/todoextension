@@ -12,7 +12,11 @@ const Complete = ({
     <div>
       <h2>Tareas completadas</h2>
       {
-        notesComplete.map((note) => (
+        notesComplete.length <= 0 
+        ? 
+        <p>No hay tareas completadas</p> 
+        :
+        (notesComplete.map((note) => (
           <NoteComplete
             key={note.id}
             note={note}
@@ -22,7 +26,7 @@ const Complete = ({
             notes={notes}
             setScreen={setScreen}
           />
-        ))
+        )))
       }
     </div>
   )
