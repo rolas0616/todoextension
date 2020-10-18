@@ -1,0 +1,37 @@
+body{
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Roboto', sans-serif;
+}
+
+:root {
+  --primary-color:#2d6187;
+  --secondary-color:#a8dda8;
+  --primary-color-text:#effad3;
+  --secondary-color-text:#686d76;
+  --color-text:#000000;
+  --danger-color-text: #cd0a0a;
+}
+.container-center {
+  text-align: center;
+}
+
+.button-primary {
+  background-color: white;
+  border: none;
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.3);
+  margin-top: 18px;
+}
+
+.button-secondary {
+  background-color: var(--secondary-color-text);
+  color: var(--primary-color-text);
+  border: none;
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  margin-top: 18px;
+}

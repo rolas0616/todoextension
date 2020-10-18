@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
+import '../styles/Container.css';
 
 const Container = ({
   children
 }) => {
   return (
-    <div style={{ backgroundColor:'#f1f1f1', width:'350px', height:'400px' }}>
+    <div className="container">
       {children}
     </div>
   )

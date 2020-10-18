@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Complete from './pages/Complete';
 import Container from './components/Container';
 import Header from './components/Header';
@@ -7,23 +7,26 @@ import Todo from './pages/Todo';
 const App = () => {
   const [screen, setScreen] = useState('todo');
   const [notesComplete, setNotesComplete] = useState([]);
-  const [notes, setNotes] = useState([
-    {
-      id : '1',
-      content : 'note 1',
-      complete : false,
-    },
-    {
-      id : '2',
-      content : 'note 2',
-      complete : false,
-    },
-    {
-      id : '3',
-      content : 'note 3',
-      complete : false,
-    },
-  ]);
+  const [notes, setNotes] = useState([]);
+  
+  const saveData = (notes, notesComplete) => {
+    localStorage.setItem('notes', JSON.stringify(notes));
+    localStorage.setItem('notesComplete', JSON.stringify(notesComplete));
+  }
+
+  const getData = () => {
+    setNotes( JSON.parse( localStorage.getItem('notes')));
+    setNotesComplete(JSON.parse(localStorage.getItem('notesComplete')))
+  }
+  
+  useEffect(() => {
+    getData();
+  }, []);
+
+  useEffect(() => {
+    saveData(notes, notesComplete);
+  },[notes, notesComplete]);
+  
   return (
     <Container>
       <Header

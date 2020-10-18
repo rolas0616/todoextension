@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import '../styles/Form.css';
 
 const FormEdit = ({
   currentNote,
@@ -15,32 +16,39 @@ const FormEdit = ({
   const editNone = (e) => {
     e.preventDefault();
     if(!title.trim()) {
-      setError('Campo obligatorio')
+      setError('Required field')
       return;
     }
     setNotes(
-      notes.map(note => note.id === currentNote ? {id: note.id, content:title, complete: true} : note)
+      notes.map(note => note.id === currentNote ? {id: note.id, content:title, complete: false} : note)
     )
     setIsVisibleForm(false);
   }
   return (
     <>
-    <form onSubmit={editNone} >
+    <form onSubmit={editNone}>
       <input
         type="text"
         placeholder="Editar nota"
         onChange={(e) => setTitle(e.target.value)}
         value={title}
+        className="input"
       />
-      <button
-        type="submit"
-        >
-        Guardar
-      </button>
-      <button onClick={() => setIsVisibleForm(false)}>Cancelar</button>
       {
-        error ? <p>{error}</p> : null
+        error ? <p className="error">{error}</p> : null
       }
+      <button
+        className="button-primary"
+        type="submit"
+      >
+        Save
+      </button>
+      <button
+        className="button-secondary" 
+        onClick={() => setIsVisibleForm(false)}
+      > 
+        Cancel
+      </button>
     </form>
     </>
   )

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/Note.css';
 
 const Note = ({
   note,
@@ -29,25 +30,31 @@ const Note = ({
   }
 
   return (
-    <div>
+    <div className="container-left">
       <input
+        onChange={() => {}}
+        className="check"
         checked={note.complete}
         type="checkbox"
         onClick={() => addCompleteNote(note)}
       />
-      <label> {note.content} </label>
+      <label className="text"> {note.content} </label>
+
       <button
+        className="options"
         type="button"
         onClick={() => [setIsVisibleForm(true), setIsEdit(true), setCurrentNote(note.id)]}
       >
-        editar
+        ✎
       </button>
       <button
+        className="options"
         type="button"
         onClick={() => deleteNote(note.id)}
       >
-        eliminar
+        ✘
       </button>
+
     </div>
   )
 }

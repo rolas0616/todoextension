@@ -1,16 +1,19 @@
-import React from 'react'
+import React from 'react';
+import '../styles/Header.css';
 
 const Header = ({
   setScreen
 }) => {
   return (
-    <div>
-      <button 
+    <div className="flex">
+      <button
+        className="header"
         onClick={ () => setScreen('todo') }
       >
         Todo
       </button>
-      <button 
+      <button
+        className="header"
         onClick={ () => setScreen('complete') }
       >
         Complete

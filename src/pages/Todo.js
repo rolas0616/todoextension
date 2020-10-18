@@ -13,13 +13,18 @@ const Todo = ({
   const [isEdit, setIsEdit] = useState(false);
   const [currentNote, setCurrentNote] = useState('');
   return (
-    <div>
+    <div className="container-center">
       {
-        !isVisibleForm ? <h2>Tus tareas</h2> : null
+        !isVisibleForm ? <h2>Your Notes</h2> : null
       }
       {
         !isVisibleForm ? (
-          notes.length === 0 ? <p>Agrega una nota</p>
+          notes.length === 0 ? (
+            <div>
+              <p>You don't have a note, Create one!</p>
+              <img src="clipboard.png" alt="clipboard" width="150px"/>
+            </div>
+          )
           :
           notes.map((note) => (
             <Note
@@ -36,14 +41,14 @@ const Todo = ({
           ))
         ) : null
       }
-      <br/>
       {
         !isVisibleForm ? (
           <button
+            className="button-primary"
             type="button"
             onClick={ () => [setIsVisibleForm(true), setIsEdit(false)] }
           >
-            + Agregar nota
+             Add note
           </button>
         ) : null
       }
@@ -52,7 +57,7 @@ const Todo = ({
           <>
             <h2>
               {
-                isEdit ? 'Editar nota' : 'Agregar nota'
+                isEdit ? 'Edit note' : 'Add note'
               }
             </h2>
               {

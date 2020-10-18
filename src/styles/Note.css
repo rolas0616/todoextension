@@ -1,0 +1,28 @@
+.container-left {
+  text-align: left;
+  background-color: #f1f1f1;
+  margin-top: 5px;
+  padding: 10px 10px 10px 10px;
+  margin: 5px 10px 0px 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.options {
+  border: none;
+  width: 10%;
+}
+
+.text {
+  width: 70%;
+  margin-left: 5px;
+}
+
+.check {
+  width: 5%;
+}
+
+.check-complete {
+  width: 10%;
+}

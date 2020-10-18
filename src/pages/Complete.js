@@ -9,12 +9,15 @@ const Complete = ({
   setScreen,
 }) => {
   return (
-    <div>
-      <h2>Tareas completadas</h2>
+    <div className="container-center">
+      <h2>Completed notes</h2>
       {
-        notesComplete.length <= 0 
+        notesComplete.length <= 0
         ? 
-        <p>No hay tareas completadas</p> 
+        <div>
+          <p>No tasks completed</p>
+          <img src="wrong.png" alt="wrong" width="150px"/>
+        </div> 
         :
         (notesComplete.map((note) => (
           <NoteComplete

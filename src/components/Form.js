@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import shortid from 'shortid';
+import '../styles/Form.css';
 
 const Form = ({
   notes,
@@ -11,7 +12,7 @@ const Form = ({
   const addNote = (e) => {
     e.preventDefault();
     if(!title.trim()) {
-      setError('Campo obligatorio')
+      setError('Required field')
       return;
     }
     setNotes([
@@ -26,18 +27,20 @@ const Form = ({
     <form onSubmit={addNote} >
       <input
         type="text"
-        placeholder="Agrega una tarea"
+        placeholder="Describe yout note"
         onChange={(e) => setTitle(e.target.value)}
+        className="input"
       />
+      {
+        error ? <p className="error">{error}</p> : null
+      }
       <button
         type="submit"
+        className="button-primary"
         >
-        Guardar
+        Save
       </button>
-      <button onClick={() => setIsVisibleForm(false)}>Cancelar</button>
-      {
-        error ? <p>{error}</p> : null
-      }
+      <button className="button-secondary" onClick={() => setIsVisibleForm(false)}>Cancel</button>
     </form>
     </>
   )

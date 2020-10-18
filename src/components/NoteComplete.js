@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/Note.css';
 
 const NoteComplete = ({
   note,
@@ -25,15 +26,19 @@ const NoteComplete = ({
     setNotesComplete(updateNotes);
   }
   return (
-    <div>
+    <div className="container-left">
       <input
+        className="check-complete"
         type="checkbox"
         checked={note.complete}
         onChange={() => quitCompleteNote(note) }
       />
-      <label> {note.content} </label>
-      <button onClick={() => deleteNote(note.id)}>
-        eliminar
+      <label className="text"> {note.content} </label>
+      <button
+        className="options"
+        onClick={() => deleteNote(note.id)}
+        >
+        ✘
       </button>
     </div>
   )
